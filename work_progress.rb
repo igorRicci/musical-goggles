@@ -2,7 +2,7 @@ require 'ruby-progressbar'
 
 print "Enter the approx time in minutes or hours to be tracked: "
 answer = gets.chomp.strip.gsub(",", ".").to_f
-countdown = (answer < 13 ? answer * 60 * 2 : answer * 2).to_i
+countdown = (answer < 11 ? answer * 60 * 2 : answer * 2).to_i
 ti = Time.new
 
 greetings = [
@@ -27,7 +27,7 @@ puts `clear`
 puts "Initiated at: #{ti.strftime('%k:%M')}"
 puts ti.strftime('%A, %d of %B')
 puts ""
-puts "Tracking: #{answer < 13 ? answer.to_s + " h" : answer.to_s + " min"}"
+puts "Tracking: #{answer < 11 ? answer.to_s + " h" : answer.to_s + " min"}"
 puts ""
 puts greetings.sample
 puts ""
@@ -82,7 +82,9 @@ countdown.times do
 		pgb.log motivational_quotes.sample
 	elsif real_progress == 50 && quote_count == 3
 		quote_count += 1
+		pgb.log ""
 		pgb.log "Believe you can! You're halfway there."
+		pgb.log ""
 	elsif real_progress == 65 && quote_count == 4
 		quote_count += 1
 		pgb.log motivational_quotes.sample
